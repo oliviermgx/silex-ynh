@@ -87,6 +87,17 @@ ram.runtime = "50M"
     help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
     type = "password"
 
+    [install.Gitlab_id]
+    help.en = "Gitlab Id"
+    help.fr = "Gitlab id"
+    type = "string"
+
+    [install.Gitlab_secret]
+    help.en = "Gitlab Secret"
+    help.fr = "Gitlab secret"
+    type = "string"
+   
+
 [resources]
     # See the packaging documentation for the full set
     # of explanation regarding the behavior and properties for each of those
@@ -104,8 +115,7 @@ ram.runtime = "50M"
     # to auto-update the previous asset urls and sha256sum + manifest version
     # assuming the upstream's code repo is on github and relies on tags or releases
     # See the 'sources' resource documentation for more details
-
-    # autoupdate.strategy = "latest_github_tag"
+    autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
     # This will provision/deprovision a unix system user
@@ -127,7 +137,7 @@ ram.runtime = "50M"
     # This will pick a random port for reverse-proxying and store it as the $port setting
     main.default = 6805
 
-    [resources.apt]
+    # [resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
     # mariadb-server, deb1, deb2, php8.0-foo, php8.0-bar"

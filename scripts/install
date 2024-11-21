@@ -36,28 +36,28 @@ source /usr/share/yunohost/helpers
 # ynh_app_setting_set --key=foo --value=$foo
 
 #=================================================
-# INSTALL DEPENDENCIES
+# INSTALL NODEJS
 #=================================================
 ynh_script_progression "Installing NodeJS..."
 
-ynh_install_nodejs --nodejs_version=$nodejs_version
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression "Setting up source files..."
+# ynh_script_progression "Setting up source files..."
 
 ### `ynh_setup_source` is used to install an app from a zip or tar.gz file,
 ### downloaded from an upstream source, like a git repository.
 ### `ynh_setup_source` use the file manifest.toml
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir"
+# ynh_setup_source --dest_dir="$install_dir"
 
 ### $install_dir will automatically be initialized with some decent
 ### permission by default... however, you may need to recursively reapply
 ### ownership to all files such as after the ynh_setup_source step
-chown -R "$app:www-data" "$install_dir"
+# chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # APP INITIAL CONFIGURATION
@@ -76,13 +76,13 @@ ynh_script_progression "Adding $app's configuration files..."
 ###
 ### Check the documentation of `ynh_config_add` for more info.
 
-ynh_config_add --template="some_config_file" --destination="$install_dir/some_config_file"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 # FIXME: this should be handled by the core in the future
 ### You may need to use chmod 600 instead of 400,
 ### for example if the app is expected to be able to modify its own config
-chmod 400 "$install_dir/some_config_file"
-chown "$app:$app" "$install_dir/some_config_file"
+# chmod 400 "$install_dir/some_config_file"
+# chown "$app:$app" "$install_dir/some_config_file"
 
 ### For more complex cases where you want to replace stuff using regexes,
 ### you shoud rely on ynh_replace (which is basically a wrapper for sed)
