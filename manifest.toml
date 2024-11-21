@@ -7,7 +7,7 @@ name = "Silex-Platform"
 description.en = "Create websites directly in the browser without writing code."
 description.fr = "Créez des sites internet directement dans le navigateur sans écrire de code."
 
-version = "1.0.169"
+version = "1.0.169~ynh1"
 
 maintainers = ["https://github.com/silexlabs"]
 
@@ -97,8 +97,8 @@ ram.runtime = "50M"
     # This will pre-fetch the asset which can then be deployed during the install/upgrade scripts with :
     #    ynh_setup_source --dest_dir="$install_dir"
     # You can also define other assets than "main" and add --source_id="foobar" in the previous command
-    url = "https://github.com/foo/bar/archive/refs/tags/v1.2.3.tar.gz"
-    sha256 = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    url = "https://github.com/silexlabs/silex-platform/archive/refs/tags/v1.0.169.tar.gz"
+    sha256 = "a2a31204a345a766a047037bc09dbfb1bb614320d273faa54d2aaecf6ee022b4"
 
     # These infos are used by https://github.com/YunoHost/apps/blob/master/tools/autoupdate_app_sources/autoupdate_app_sources.py
     # to auto-update the previous asset urls and sha256sum + manifest version
@@ -125,12 +125,13 @@ ram.runtime = "50M"
 
     [resources.ports]
     # This will pick a random port for reverse-proxying and store it as the $port setting
+    main.default = 6805
 
     [resources.apt]
     # This will automatically install/uninstall the following apt packages
     # and implicitly define the $phpversion setting as 8.0 (if phpX.Y-foobar dependencies are listed)
-    packages = "mariadb-server, deb1, deb2, php8.0-foo, php8.0-bar"
+    # mariadb-server, deb1, deb2, php8.0-foo, php8.0-bar"
 
     [resources.database]
     # This will automatically provision/deprovison a MySQL DB and store the corresponding credentials in settings $db_user, $db_name, $db_pwd
-    type = "mysql"
+    # ype = "mysql"
