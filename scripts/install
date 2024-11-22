@@ -36,13 +36,11 @@ source /usr/share/yunohost/helpers
 # ynh_app_setting_set --key=foo --value=$foo
 
 #=================================================
-# INSTALL NODEJS and ADD SYSTEMD
+# INSTALL NODEJS
 #=================================================
-ynh_script_progression "Installing NodeJS and adding Systemd..."
+ynh_script_progression "Installing NodeJS..."
 
 ynh_nodejs_install
-
-ynh_config_add_systemd
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -203,7 +201,7 @@ popd
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting $app's systemd service..."
+# ynh_script_progression "Starting $app's systemd service..."
 
 ### `ynh_systemctl` is used to start a systemd service for an app.
 ### Only needed if you have configure a systemd service
@@ -214,7 +212,7 @@ ynh_script_progression "Starting $app's systemd service..."
 ###   - And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start"
+# ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
