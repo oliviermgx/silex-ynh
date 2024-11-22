@@ -106,7 +106,7 @@ popd
 ynh_script_progression --message="Start $app..." --weight=2
 
 pushd $install_dir
-    GITLAB_CLIENT_ID=$gitlab_id GITLAB_CLIENT_SECRET=$gitlab_secret npm start &
+    GITLAB_CLIENT_ID=$gitlab_id GITLAB_CLIENT_SECRET=$gitlab_secret npm start '&'
 popd
 
 #=================================================
