@@ -1,5 +1,5 @@
 [Unit]
-Description=CryptPad: Zero Knowledge realtime collaborative editor.
+Description=Silex - Nocode website creation
 After=syslog.target network.target
 
 [Service]

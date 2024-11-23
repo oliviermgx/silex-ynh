@@ -97,7 +97,16 @@ ynh_config_add --template=".env" --destination="$install_dir/.env"
 ynh_script_progression --message="Installing $app..." --weight=2
 
 pushd $install_dir
-    GITLAB_CLIENT_ID=$gitlab_id GITLAB_CLIENT_SECRET=$gitlab_secret npm install
+    npm install
+popd
+
+#=================================================
+# START SILEX
+#=================================================
+ynh_script_progression --message="Start $app..." --weight=2
+
+pushd $install_dir
+    GITLAB_CLIENT_ID=$gitlab_id GITLAB_CLIENT_SECRET=$gitlab_secret npm start
 popd
 
 #=================================================
@@ -134,7 +143,7 @@ popd
 ###   - And the section "SETUP SYSTEMD" in the upgrade script
 
 # Create a dedicated systemd config
-ynh_config_add_systemd
+# ynh_config_add_systemd
 
 ### `yunohost service add` integrates a service in YunoHost. It then gets
 ### displayed in the admin interface and through the others `yunohost service` commands.
@@ -192,7 +201,7 @@ ynh_config_add_systemd
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression "Starting $app's systemd service..."
+# ynh_script_progression "Starting $app's systemd service..."
 
 ### `ynh_systemctl` is used to start a systemd service for an app.
 ### Only needed if you have configure a systemd service
@@ -203,7 +212,7 @@ ynh_script_progression "Starting $app's systemd service..."
 ###   - And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
-ynh_systemctl --service="$app" --action="start"
+# ynh_systemctl --service="$app" --action="start"
 
 #=================================================
 # END OF SCRIPT
